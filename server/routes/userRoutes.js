@@ -2,8 +2,9 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 var jwt = require('jsonwebtoken')
 
+let keys = {}
 if(process.env.NODE_ENV !== 'production'){
-    const keys = require('../../config/keys')
+    keys = require('../../config/keys')
 }
 
 

@@ -8,9 +8,12 @@ const cors = require('cors')
 
 const fileUpload = require('express-fileupload') //test for upload image
 
+let keys = {}
 //custom imports
-if(process.env.NODE_ENV !== 'production'){
-    const keys = require('./../config/keys') //my secret keys
+if(process.env.NODE_ENV === 'production'){
+    
+  }else{
+    keys = require('./../config/keys') //my secret keys
   }
 
 require('./db/models/Song') //user schema and mongoose model
@@ -21,8 +24,12 @@ mongoose.connect(keys.MONGO_DB_URI || process.env.MONGO_DB_URI,{useNewUrlParser:
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-const publicPath = path.join(__dirname,'..','build')
+//const publicPath = path.join(__dirname,'..','build')
+
+
 const app = express()
+//app.use(express.static(publicPath))
+app.use(express.static(path.join(__dirname,'..','build')));
 
 app.use(fileUpload()) //test for uploading file
 
@@ -42,7 +49,6 @@ app.use(cookieSession({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(express.static(publicPath))
 app.use(bodyParser.json())
 
 //routes import
@@ -56,9 +62,17 @@ userRoutes(app)
 
 
 //ALL OTHER ROUTES WILL GO TO THE REACT APP. LOADED WITH INDEX.HTML
-app.get('*', (req, res )=>{
-    res.sendFile(path.join(publicPath,'index.html'))
-})
+// app.get('*', (req, res )=>{
+//     res.sendFile(path.join(publicPath,'index.html'))
+// })
+
+// app.get('/home*', function (req, res) {
+//     res.sendFile(path.join(__dirname, '..','build', 'index.html'));
+//   });
+
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname,'..','build', 'index.html'));
+  });
 
 const port = process.env.PORT || 3000
 
