@@ -35,6 +35,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "heroku-prebuild": "react-scripts build",
     "dev": "react-scripts start",
     "react": "react-scripts build",
     "start": "node server/server.js",
