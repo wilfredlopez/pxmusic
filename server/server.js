@@ -9,12 +9,15 @@ const cors = require('cors')
 const fileUpload = require('express-fileupload') //test for upload image
 
 //custom imports
-const keys = require('./../config/keys') //my secret keys
+if(process.env.NODE_ENV !== 'production'){
+    const keys = require('./../config/keys') //my secret keys
+  }
+
 require('./db/models/Song') //user schema and mongoose model
 require('./db/models/User') //user schema and mongoose model
 
 //configurations
-mongoose.connect(keys.MONGO_DB_URI,{useNewUrlParser: true})
+mongoose.connect(keys.MONGO_DB_URI || process.env.MONGO_DB_URI,{useNewUrlParser: true})
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
@@ -35,7 +38,7 @@ app.use(bodyParser.json());
 app.use(cors(corsOptions))
 app.use(cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.COOKIE_KEY]
+    keys: [keys.COOKIE_KEY || process.env.COOKIE_KEY]
 }))
 app.use(passport.initialize())
 app.use(passport.session())

@@ -1,9 +1,12 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 
-const keys = require('./../config/keys')
-const GOOGLE_CLIENT_ID = keys.GOOGLE_CLIENT_ID
-const GOOGLE_CLIENT_SECRET = keys.GOOGLE_CLIENT_SECRET
+if(process.env.NODE_ENV !== 'production'){
+    const keys = require('./../config/keys') 
+}
+
+const GOOGLE_CLIENT_ID = keys.GOOGLE_CLIENT_ID || process.env.GOOGLE_CLIENT_ID
+const GOOGLE_CLIENT_SECRET = keys.GOOGLE_CLIENT_SECRET || process.env.GOOGLE_CLIENT_SECRET
 const User = require('mongoose').model('users')
 
 passport.serializeUser((user, done)=>{

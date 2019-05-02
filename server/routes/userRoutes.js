@@ -2,7 +2,11 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 var jwt = require('jsonwebtoken')
 
-const keys = require('../../config/keys')
+if(process.env.NODE_ENV !== 'production'){
+    const keys = require('../../config/keys')
+}
+
+
 const Users = mongoose.model('users')
 
 module.exports = (app) => {
@@ -40,7 +44,7 @@ module.exports = (app) => {
             if(isMatch){
                 const token = await jwt.sign({
                     userId: user[0].id
-                  }, keys.JWT_SECRET, { expiresIn: '7 days' });
+                  }, keys.JWT_SECRET || process.env.JWT_SECRET, { expiresIn: '7 days' });
 
                 await user.push({token:token})
 

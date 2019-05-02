@@ -4,12 +4,15 @@
 const fs = require('fs');
 const cloudinary = require('cloudinary').v2;
 
-const keys = require('../../config/keys')
+if(process.env.NODE_ENV !== 'production'){
+  const keys = require('../../config/keys')
+}
+
 
 cloudinary.config({ 
-    cloud_name: keys.CLOUDINARY_CLOUD_NAME, 
-    api_key: keys.CLOUDINARY_API_KEY, 
-    api_secret: keys.CLOUDINARY_API_SECRET
+    cloud_name: keys.CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_CLOUD_NAME, 
+    api_key: keys.CLOUDINARY_API_KEY || process.env.CLOUDINARY_API_KEY, 
+    api_secret: keys.CLOUDINARY_API_SECRET || process.env.CLOUDINARY_API_SECRET
   });
 
   saveToCloudinary = function(imgPath){
