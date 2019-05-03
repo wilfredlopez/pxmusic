@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const NewFormN = () => {
     const [file, setFile] = useState()
-    const [filename, setFileName] =  useState('Choose File')
+    const [filename, setFileName] =  useState('Imagen')
     const [title, setTitle] = useState()
     const [artist, setArtist] = useState()
     const [album, setAlbum] = useState()

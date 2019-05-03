@@ -40,7 +40,7 @@
     "react": "react-scripts build",
     "start": "node server/server.js",
     "eject": "react-scripts eject",
-    "server": "nodemon server/server.js"
+    "server": "react-scripts build && nodemon server/server.js"
   },
   "browserslist": {
     "production": [

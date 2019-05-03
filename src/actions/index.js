@@ -1,4 +1,4 @@
-import {AUTH_USER, AUTH_ERROR} from './types'
+import {AUTH_USER, AUTH_ERROR, LOAD_MUSIC} from './types'
 import axios from 'axios'
 
 
@@ -48,3 +48,17 @@ export const SignIn = ({email, password}, callback) => {
 }
 
 
+//******************************************* */
+export const loadAllMusic = (page = 1, limit = 20) => { 
+        return async (dispatch)=> {
+            try{
+                const res = await axios.get(`/api/music/all/?page=${page}&limit=${limit}`)
+                //console.log(res.data.docs)
+                dispatch({type: LOAD_MUSIC, payload: res.data})
+                //return res.data
+            }catch(err){
+                dispatch({type: LOAD_MUSIC, payload: [err]})
+            }
+
+    }
+}
