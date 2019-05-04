@@ -47,7 +47,7 @@
     "typescript": "^3.4.5"
   },
   "scripts": {
-    "heroku-prebuild": "react-scripts build",
+    "heroku-prebuild": "react-scripts react",
     "dev": "react-scripts start",
     "react": "react-scripts build",
     "start": "node server/server.js",
