@@ -1,4 +1,4 @@
-import {AUTH_USER, AUTH_ERROR, LOAD_MUSIC} from './types'
+import {AUTH_USER, AUTH_ERROR} from './types'
 import axios from 'axios'
 
 
