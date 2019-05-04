@@ -1,0 +1,42 @@
+#react-paginate ul {
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#react-paginate li {
+    display: inline-block;
+}
+div#project-comments ul {
+    padding: 0;
+}
+
+.pagination{
+    padding-left: 2.2rem;
+}
+
+
+.pagination ul li, ul.pagination li {
+    margin: 0 auto !important;
+}
+
+.pagination li a {
+    line-height: 2rem;
+    font-size: 1.3rem;
+}
+
+.pagination li.active a, .pagination li.active{
+    color: #000000;
+    cursor: text;
+    font-weight: 600;
+}
+
+.pagination li a{
+    color: blue;
+    cursor: pointer;
+}
+
+.pagination .disabled a, .pagination .disabled {
+    color: gray;
+    cursor:text;
+}
