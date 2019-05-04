@@ -15,8 +15,8 @@ cloudinary.config({
     api_secret: keys.CLOUDINARY_API_SECRET || process.env.CLOUDINARY_API_SECRET
   });
 
-  saveToCloudinary = function(imgPath){
-    return cloudinary.uploader.upload(imgPath, function(error, result) {
+  saveToCloudinary = function(imgPath, options = {}){
+    return cloudinary.uploader.upload(imgPath, options, function(error, result) {
         //console.log(result.url, error)
         return result
     });

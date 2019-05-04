@@ -6,7 +6,8 @@ const Song = mongoose.model('Song')
 function getOptions(page,limit){
     return {
         page: page || 1,
-        limit: limit || 30
+        limit: limit || 30,
+        sort: { createdAt: -1 },
     }
     
 }
@@ -20,7 +21,7 @@ module.exports = (app) => {
         const {page, limit} = req.query
         const options = getOptions(page,limit)
         try{
-           // const Data = await Song.find({})
+
             //pagination: takes query and then options
             const Data = await Song.paginate({},options)
             res.send(Data)
@@ -59,56 +60,33 @@ module.exports = (app) => {
     })
 
 //**** CREATE ******  
-    //REPLACED BY THE ONE BELLOW
-    // app.post('/api/music/new', async (req, res) => {
-    //     const file = req.files.file
-
-    //     const pa = `/build/uploads/${new Date().getMilliseconds() + file.name}`
-    //     file.mv(`.${pa}`)
-    //     //user is able to select existing Song or add new one
-    //     //with each request they can only send 1 Song
-    //     let {title, artist, album, url, category} = req.body
-    //     let img = ''
-    //     //console.log(req.file.path)
-
-    //     img = pa
-    //     const name = `${artist} - ${title}`
-       
-    //     try{
-    //         const Songs = await Song.findOne({title, artist})
-    //         if(!Songs){
-    //             //Song Doesnt Exist. creates new Song and the song 
-    //             const newSong = await new Song({
-    //                 name, title, artist, album, url, category, img
-    //             }).save()
-    //             return res.status(201).send(newSong)
-    //         }else{
-    //             //SONG EXISTS ALREADy
-    //             res.status(403).send({error:"Already Exist"})
-    //         }
-    //     }catch(err){
-    //         res.send(err.message)
-    //     }
-    // })
-
     app.post('/api/music/new', async (req, res) => {
+        const now = new Date();
+        const year = now.getFullYear()
+        const mes = now.getMonth()
+        const dir = `${year}/${mes}`
+
         const file = req.files.file
+        const audio = req.files.url
 
-
-        const pa = `/build/uploads/${new Date().getMilliseconds() + file.name}`
-        file.mv(`.${pa}`)
-
-        const savedImage = await saveToCloudinary(`.${pa}`)
-
-        let {title, artist, album, url, category} = req.body
+        let {title, artist, album, category} = req.body
         let img = ''
-        //console.log(req.file.path)
-
-        //console.log(savedImage)
-
-        //img = pa
-        img = savedImage.url
+        let url = ''
         const name = `${artist} - ${title}`
+
+        try{
+            const pa = `/build/uploads/${new Date().getMilliseconds() + file.name}`
+            file.mv(`.${pa}`)
+            const audioPa = `/build/uploads/${audio.name}`
+            await audio.mv(`.${audioPa}`)
+            const savedImage = await saveToCloudinary(`.${pa}`,{folder: `pxmusic/images/${dir}`, use_filename: true})
+            const savedAudio = await saveToCloudinary(`.${audioPa}`, {resource_type: "video", folder: `pxmusic/music/${dir}`, use_filename: true})
+            img = savedImage.url
+            url = savedAudio.url
+        }catch(err){
+            return res.send({error:'something happened during cloudinary  upload'})
+        }
+       
        
         try{
             const Songs = await Song.findOne({title, artist})
@@ -123,7 +101,7 @@ module.exports = (app) => {
                 res.status(403).send({error:"Already Exist"})
             }
         }catch(err){
-            res.send(err.message)
+            res.send([{error: 'hey Wilfred from post'},err.message])
         }
     })
 

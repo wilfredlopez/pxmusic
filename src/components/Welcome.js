@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 
 import {SongList} from './SongList'
-import './css/paginate.css'
+
 
 
 class Welcome extends React.Component{
@@ -24,7 +24,7 @@ class Welcome extends React.Component{
                 
             </p>
             </div>
-            <SongList url={'/api/music/all'} perPage={2}/>
+            <SongList url={'/api/music/all'} perPage={4}/>
 
         </div>
         )

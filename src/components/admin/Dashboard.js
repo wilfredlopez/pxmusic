@@ -12,16 +12,10 @@ class Dashboard extends React.Component{
 
     async uploadSong(e){
         e.preventDefault()
-        //console.log(e.target.img)
-       // const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-       // let fd = new FormData();
-        //fd.append('file',files[0])
         
         try{
-            const res = ''//await axios.post('/api/music/new', values)
-
-            console.log(res)
-            this.props.destroy()
+           // this.props.destroy()
+           console.log('destroy')
             }catch(err){
                 console.log('there was an error')
                 

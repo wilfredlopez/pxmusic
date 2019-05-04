@@ -49,7 +49,7 @@ app.use(cookieSession({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(bodyParser.json())
+
 
 //routes import
 const categoryRoutes = require('./routes/getMusic')
