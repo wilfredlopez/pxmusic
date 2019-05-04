@@ -14,6 +14,7 @@
     "bootstrap": "^4.3.1",
     "cloudinary": "^1.14.0",
     "cookie-session": "^1.3.3",
+    "core-js": "^3.0.1",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "eslint": "^5.16.0",
@@ -43,7 +44,7 @@
     "typescript": "^3.4.5"
   },
   "scripts": {
-    "heroku-prebuild": "react-scripts build",
+    "heroku-prebuild": "",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "start": "node server/server.js",
@@ -72,7 +73,7 @@
     "rules": {},
     "env": {}
   },
-  "main": "index.js",
+  "main": "server.js",
   "author": "Wilfred Lopez",
   "license": "MIT",
   "homepage": "https://pxmusic.herokuapp.com/"
