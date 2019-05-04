@@ -12,6 +12,14 @@
     }
 }
 
+#db-logout {
+    background: thistle;
+}
+
+#db-logout:hover {
+    background: #ded9e3;
+}
+
 .img-fluid, .img-thumbnail {
     width: 330px;
 

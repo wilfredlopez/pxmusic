@@ -23,6 +23,8 @@ export class SongList extends React.Component{
         let selected = data.selected
         //let offset = Math.ceil(selected * this.props.perPage) 
         let offset = selected + 1
+
+        $(document).scrollTop(0)
     
         this.setState({ offset: offset }, () => {
             this.loadCommentsFromServer();
@@ -101,7 +103,7 @@ export class MusicList extends React.Component {
                <div className="row ">
                    <div className="col">
                        <p className="card-text text-left"><i className="font-weight-bold">Genero:</i>
-                       <a href={"/music/"+song.category.toLowerCase()}> {song.category}</a></p>
+                       <a href={"/generos/"+song.category.toLowerCase()}> {song.category}</a></p>
                    </div>
                    <div className="col">
                    <p className="card-text text-right"><i className="font-weight-bold">Descargas:</i> {song.downloads}</p>

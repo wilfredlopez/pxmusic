@@ -14,7 +14,7 @@ class Variada extends React.Component{
                     <p>Musica Variada</p>               
                 </div>
             </div>
-            <SongList url={'/api/music/variada'} perPage={4}/>
+            <SongList url={'/api/music/Variada'} perPage={4}/>
 
         </div>
         )

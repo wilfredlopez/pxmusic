@@ -11,6 +11,7 @@ import Variada from './categories/Variada'
 import Contacto from './Contacto'
 
 import './css/paginate.css'
+import '../accesibility/accesibility'
 
 import Dashboard from './admin/Dashboard'
 

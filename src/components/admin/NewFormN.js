@@ -177,7 +177,10 @@ const NewFormN = () => {
             <div className="col-12 d-flex">
                 <small>*required fields</small>
                 </div>
-            <div className="col-12">
+            <div className="col-12 mt-2">
+                <i className="btn btn-info text-right mb-3 float-left" onClick={clearForm} role="button">
+                <span className=""> Clear <i class="far fa-trash-alt"> </i></span>
+                </i>
                 <button type="submit" className="btn btn-success text-right mb-3">
                     <i className="">Upload </i><i class="fas fa-upload"></i>
                 </button>
@@ -187,9 +190,7 @@ const NewFormN = () => {
             {postError && <div className="row"><div className="col text-center"><i className="alert alert-danger ">{postError.message}</i></div></div>}
             </form>
             <div className="float-right">
-            <button type="submit" className="btn btn-info text-right mb-3" onClick={clearForm}>
-                <span className=""> Clear <i class="far fa-trash-alt"> </i></span>
-            </button>
+
             </div>
             </Fragment>
         )

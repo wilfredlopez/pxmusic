@@ -30,7 +30,7 @@ class Dashboard extends React.Component{
                 <h1 className="display-4 mx-auto">Admin </h1>
             </div>
             <div className="col-sm-6 my-auto">
-                <p className="text-right my-auto text-center"><a className="btn btn-dark" href="/signout">Signout</a></p>
+                <p className="text-right my-auto text-center"><a id="db-logout" className="btn btn-light btn-sm float-right" href="/signout">Signout</a></p>
             </div>
         </div>
 
@@ -42,13 +42,13 @@ class Dashboard extends React.Component{
                 {this.state.showUpload ?  
                     <button 
                         onClick={()=> {this.setState({showUpload: !this.state.showUpload})}} 
-                        className="btn btn-primary text-center">
-                        Hide
+                        className="btn btn-primary text-center btn-sm">
+                        Hide upload
                     </button> 
                 : 
                     <button 
                             onClick={()=> {this.setState({showUpload: !this.state.showUpload})}} 
-                            className="btn btn-primary text-center">
+                            className="btn btn-primary text-center btn-sm">
                             Upload New
                     </button> 
                 }
