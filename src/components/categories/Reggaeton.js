@@ -7,11 +7,11 @@ import {SongList} from '../SongList'
 class Reggaeton extends React.Component{
     render() {
         return (
-        <div className="container">
-            <div className="row text-center">
-                <div className="col">
+        <div className="container px-0">
+            <div className="row text-center px-0 mx-0">
+                <div className="col-12 px-0">
                     <h1 className="display-4">PX Music</h1>
-                    <p>Reggaeton</p>               
+                    <p className="p-0 m-0">Reggaeton</p>               
                 </div>
             </div>
 

@@ -1,8 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import { connect} from 'react-redux'
+import $ from 'jquery'
 
 class Header extends React.Component{
+    handleClick(){
+        $('.navbar-toggler').trigger('click')
+    }
     render() {
         return (
         <div>
@@ -17,16 +21,16 @@ class Header extends React.Component{
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className="nav-link active" to="/">Inicio</Link>
+                        <Link className="nav-link active" to="/" onClick={this.handleClick}>Inicio</Link>
                         </li>
                         <li>
-                        <Link className="nav-link" to="/generos/reggaeton">Reggaeton</Link>
+                        <Link className="nav-link" to="/generos/reggaeton" onClick={this.handleClick}>Reggaeton</Link>
                         </li>
                         <li>
-                        <Link className="nav-link" to="/generos/variada">Musica Variada</Link>
+                        <Link className="nav-link" to="/generos/variada" onClick={this.handleClick}>Musica Variada</Link>
                         </li>
                         <li>
-                        <Link className="nav-link" to="/contacto">Contacto</Link>
+                        <Link className="nav-link" to="/contacto" onClick={this.handleClick}>Contacto</Link>
                         </li>
                     </ul>
                   {/*   <div className="float-right"><Link to="/admin" className="btn btn-light btn-sm">Admin</Link></div> */}
