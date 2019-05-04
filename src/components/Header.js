@@ -36,7 +36,6 @@ class Header extends React.Component{
     }
 }
 
-
 function mapStateToProps(state){
     return {
         authenticated: state.auth.authenticated
