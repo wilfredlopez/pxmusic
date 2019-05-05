@@ -8,16 +8,16 @@ import {SongList} from './SongList'
 
 
 class Welcome extends React.Component{
-    handleAudio(){
-        document.addEventListener('play', function(e){
-            var audios = document.getElementsByTagName('audio');
-            for(var i = 0, len = audios.length; i < len;i++){
-                if(audios[i] !== e.target){
-                    audios[i].pause();
-                }
-            }
-        }, true);
-    }
+    // handleAudio(){
+    //     document.addEventListener('play', function(e){
+    //         var audios = document.getElementsByTagName('audio');
+    //         for(var i = 0, len = audios.length; i < len;i++){
+    //             if(audios[i] !== e.target){
+    //                 audios[i].pause();
+    //             }
+    //         }
+    //     }, true);
+    // }
 
 
     render() {
