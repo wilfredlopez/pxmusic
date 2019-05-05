@@ -79,7 +79,7 @@ module.exports = (app) => {
             file.mv(`.${pa}`)
             const audioPa = `/build/uploads/${audio.name}`
             await audio.mv(`.${audioPa}`)
-            const savedImage = await saveToCloudinary(`.${pa}`,{folder: `pxmusic/images/${dir}`, use_filename: true})
+            const savedImage = await saveToCloudinary(`.${pa}`,{upload_preset: 'nrwvfull', folder: `pxmusic/images/${dir}`, use_filename: true})
             const savedAudio = await saveToCloudinary(`.${audioPa}`, {resource_type: "video", folder: `pxmusic/music/${dir}`, use_filename: true})
             img = savedImage.url
             url = savedAudio.url

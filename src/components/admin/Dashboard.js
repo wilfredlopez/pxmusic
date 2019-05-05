@@ -26,23 +26,23 @@ class Dashboard extends React.Component{
         return (
         <div className="container">
         <div className="row border justify-content-center d-flex align-content-center">
-            <div className="col-sm-6 text-center">
-                <h1 className="display-4 mx-auto">Admin </h1>
-            </div>
-            <div className="col-sm-6 my-auto">
-                <p className="text-right my-auto text-center"><a id="db-logout" className="btn btn-light btn-sm float-right" href="/signout">Signout</a></p>
+            <div className="col-12 d-flex">
+                <h1 className="display-4 p-auto m-auto text-center">Admin </h1>
+                <p className="float-right"><a id="db-logout" className="btn btn-light btn-sm float-right" href="/signout">Signout</a></p>
             </div>
         </div>
 
             <div className="row mt-3">
-                <div className="col-sm-6">
-                        <h2 className="text-center">Top Downloads</h2>        
+                <div className="col-12">
+                        <h2 className="text-center">Actions</h2>        
                 </div>
-                <div className="col-sm-6 text-center"> 
+            </div>
+            <div className="row mt-2 p-2 border bg-secondary align-content-center justify-content-center d-flex">
+                <div className="col text-center"> 
                 {this.state.showUpload ?  
                     <button 
                         onClick={()=> {this.setState({showUpload: !this.state.showUpload})}} 
-                        className="btn btn-primary text-center btn-sm">
+                        className="btn btn-danger text-center btn-sm">
                         Hide upload
                     </button> 
                 : 
@@ -52,6 +52,10 @@ class Dashboard extends React.Component{
                             Upload New
                     </button> 
                 }
+                </div>
+
+                <div className="col text-center">
+                    <button className="btn btn-primary btn-sm">Create User</button>
                 </div>
             </div>
 

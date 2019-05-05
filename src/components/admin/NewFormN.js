@@ -64,13 +64,18 @@ const NewFormN = () => {
 
         try{
             SET_LOADING(true)
-            const res = await axios.post('/api/music/new',formData, options)
+
+            let URL = '/api/music/new'
+            URL = 'https://pxmusic.herokuapp.com/api/music/new'
+
+            const res = await axios.post(URL,formData, options)
             console.log(res)
             clearForm()
             
             }catch(err){
                 console.log('there was an error', err)
                 setPostError(err)
+                SET_LOADING(false)
             }
             SET_LOADING(false)
     }
@@ -179,10 +184,10 @@ const NewFormN = () => {
                 </div>
             <div className="col-12 mt-2">
                 <i className="btn btn-info text-right mb-3 float-left" onClick={clearForm} role="button">
-                <span className=""> Clear <i class="far fa-trash-alt"> </i></span>
+                <span className=""> Clear <i className="far fa-trash-alt"> </i></span>
                 </i>
                 <button type="submit" className="btn btn-success text-right mb-3">
-                    <i className="">Upload </i><i class="fas fa-upload"></i>
+                    <i className="">Upload </i><i className="fas fa-upload"></i>
                 </button>
                 
             </div>

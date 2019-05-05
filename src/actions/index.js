@@ -3,14 +3,14 @@ import axios from 'axios'
 
 
 //tbd
-export const signUp = ({email, password}, callback) => {
+export const signUp = ({email, password, firstname , lastname, admin}, callback) => {
     
     return async (dispatch) =>{
     
         try{
-            const response = await axios.post('http://localhost:3090/signup',{email, password})
-            dispatch({type: AUTH_USER, payload: response.data.token})
-            localStorage.setItem('token', response.data.token)
+            const response = await axios.post('/users/create',{email, password, firstname, lastname, admin})
+            dispatch({type: AUTH_USER, payload: response.data[1].token})
+            localStorage.setItem('token', response.data[1].token)
             callback()
         }catch(err){
             dispatch({type: AUTH_ERROR, payload: 'Email already registered'})
@@ -27,6 +27,7 @@ export const signOut = ()=>{
         payload: ''
     }
 }
+
 
 
 //pxmusic set up
