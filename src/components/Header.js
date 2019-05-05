@@ -15,8 +15,16 @@ class Header extends React.Component{
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <Link className="navbar-brand mr-0 mr-md-2 text-light border p-2" to="/" aria-label="pxmusic">
-                PXMusic
+                <Link className="navbar-brand mr-0 mr-md-2 text-light  p-0" to="/" aria-label="pxmusic">
+                <img src="/img/PXMUSICLOGO_Transparent.png" alt="PX Music" 
+                    role="presentation" 
+                    width="120px" 
+                    height="55" 
+                    className="p-0 m-0"
+                    id="pxmusiclogo"
+                />
+
+                
             </Link>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">

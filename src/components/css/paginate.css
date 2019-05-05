@@ -12,6 +12,12 @@
     }
 }
 
+#pxmusiclogo {
+    background: rgba(255, 228, 181, 0.5);
+    /* background: moccasin; */
+    border-radius: 10px 10px;
+}
+
 #db-logout {
     background: thistle;
 }

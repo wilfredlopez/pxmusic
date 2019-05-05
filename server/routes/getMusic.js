@@ -129,6 +129,16 @@ module.exports = (app) => {
             res.status(404).send(err)
         }
     })
+    //INCRESE DOWNLOAD COUNT
+    app.patch('/api/song/download/:id', async (req, res) => {
+        try{
+            const song = await Song.findOneAndUpdate({_id: req.params.id},{ $inc: { downloads: 1 } }, {new: true })
+
+            res.status(202).send(song)
+        }catch(err){
+            res.status(404).send(err)
+        }
+    })
 
 
 //  ****** DELETE ******* //

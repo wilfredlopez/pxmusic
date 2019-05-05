@@ -5,19 +5,27 @@ import {connect} from 'react-redux'
 import {SongList} from './SongList'
 
 
-
+import $ from 'jquery'
 
 class Welcome extends React.Component{
-    // handleAudio(){
-    //     document.addEventListener('play', function(e){
-    //         var audios = document.getElementsByTagName('audio');
-    //         for(var i = 0, len = audios.length; i < len;i++){
-    //             if(audios[i] !== e.target){
-    //                 audios[i].pause();
-    //             }
-    //         }
-    //     }, true);
-    // }
+    handleDownload(e){
+        const songId = e.target.id
+       // console.log(e.target.id)
+
+            $.ajax({
+                  url: `/api/song/download/${songId}`,
+                  data: { downloads:1 },
+                  dataType: 'json',
+                  type: 'PATCH',
+  
+                success: data => {
+                 console.log('clicked or downloaded')
+                },
+                error: (xhr, status, err) => {
+                  console.error('error adding download', status, err.toString()); // eslint-disable-line
+                },
+            });
+    }
 
 
     render() {
@@ -38,7 +46,6 @@ class Welcome extends React.Component{
                 </div>
 
             </div>
-
 
             <SongList url={'/api/music/all'} perPage={4}/>
 

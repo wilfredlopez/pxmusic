@@ -85,6 +85,7 @@ export class MusicList extends React.Component {
 
   handleAudio(){
     document.addEventListener('play', function(e){
+      
         var audios = document.getElementsByTagName('audio');
         for(var i = 0, len = audios.length; i < len;i++){
             if(audios[i] !== e.target){
@@ -93,6 +94,24 @@ export class MusicList extends React.Component {
         }
       }, true);
   }
+
+  handleDownload(e){
+    const songId = e.target.id
+
+        $.ajax({
+              url: `/api/song/download/${songId}`,
+              data: { downloads:1 },
+              dataType: 'json',
+              type: 'PATCH',
+
+            success: data => {
+             console.log('clicked or downloaded')
+            },
+            error: (xhr, status, err) => {
+              console.error('error adding download', status, err.toString()); // eslint-disable-line
+            },
+        });
+}
 
   render(){
    let songs = this.props.data.map((song, index) => {
@@ -106,7 +125,7 @@ export class MusicList extends React.Component {
                <figure>
                <figcaption>{song.name}</figcaption>
                </figure>
-               <audio controls preload="none" onPlay={this.handleAudio}>
+               <audio controls preload="none" onPlay={this.handleAudio} id={song._id} onPlaying={this.handleDownload}>
                    <source src={song.url}type="audio/mpeg"/>
                Your browser does not support the audio element.
                </audio>
@@ -117,7 +136,14 @@ export class MusicList extends React.Component {
                        <a href={"/generos/"+song.category.toLowerCase()}> {song.category}</a></p>
                    </div>
                    <div className="col">
-                   <p className="card-text text-right"><i className="font-weight-bold">Descargas:</i> {song.downloads}</p>
+                   <p className="card-text text-right"><i className="font-weight-bold">
+                      <a href={song.url} 
+                        download
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        onClick={this.handleDownload} 
+                        id={song._id}>Descargas:</a></i> {song.downloads}
+                    </p>
                </div>
                </div> 
            </div>
