@@ -2,12 +2,24 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 
-
 import {SongList} from './SongList'
 
 
 
+
 class Welcome extends React.Component{
+    handleAudio(){
+        document.addEventListener('play', function(e){
+            var audios = document.getElementsByTagName('audio');
+            for(var i = 0, len = audios.length; i < len;i++){
+                if(audios[i] !== e.target){
+                    audios[i].pause();
+                }
+            }
+        }, true);
+    }
+
+
     render() {
         return (
         <div className="container px-0">
@@ -26,6 +38,7 @@ class Welcome extends React.Component{
                 </div>
 
             </div>
+
 
             <SongList url={'/api/music/all'} perPage={4}/>
 

@@ -85,14 +85,11 @@ module.exports = (app) => {
             file.mv(`.${pa}`)
             audioPa = `/tmp/${audio.name}`
             await audio.mv(`.${audioPa}`)
-
         }catch(err){
             return res.send({Error: 'Couldnt Move Files'})
         }
 
         try{
-            console.log(pa, audioPa)
-            // /upload_preset: 'nrwvfull', 
             const savedImage = await saveToCloudinary(`.${pa}`,{upload_preset: 'nrwvfull', folder: `pxmusic/images/${dir}`, use_filename: true})
             const savedAudio = await saveToCloudinary(`.${audioPa}`, {upload_preset: 'nrwvfull', resource_type: "video", folder: `pxmusic/music/${dir}`, use_filename: true})
             img = savedImage.url

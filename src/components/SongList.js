@@ -83,6 +83,17 @@ export class MusicList extends React.Component {
     data: PropTypes.array.isRequired,
   };
 
+  handleAudio(){
+    document.addEventListener('play', function(e){
+        var audios = document.getElementsByTagName('audio');
+        for(var i = 0, len = audios.length; i < len;i++){
+            if(audios[i] !== e.target){
+                audios[i].pause();
+            }
+        }
+      }, true);
+  }
+
   render(){
    let songs = this.props.data.map((song, index) => {
        return (             
@@ -95,7 +106,7 @@ export class MusicList extends React.Component {
                <figure>
                <figcaption>{song.name}</figcaption>
                </figure>
-               <audio controls preload="none">
+               <audio controls preload="none" onPlay={this.handleAudio}>
                    <source src={song.url}type="audio/mpeg"/>
                Your browser does not support the audio element.
                </audio>
