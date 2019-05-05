@@ -74,21 +74,24 @@ module.exports = (app) => {
         let url = ''
         const name = `${artist} - ${title}`
 
+        let pa = ''
+        let audioPa = ''
 
         try{
             // const pa = `/build/uploads/${new Date().getMilliseconds() + file.name}`
             // file.mv(`.${pa}`)
             // const audioPa = `/build/uploads/${audio.name}`
+            pa = `/tmp/${new Date().getMilliseconds() + file.name}`
+            file.mv(`.${pa}`)
+            audioPa = `/tmp/${audio.name}`
+            await audio.mv(`.${audioPa}`)
 
         }catch(err){
             return res.send({Error: 'Couldnt Move Files'})
         }
 
         try{
-            const pa = `/tmp/${new Date().getMilliseconds() + file.name}`
-            file.mv(`.${pa}`)
-            const audioPa = `/tmp/${audio.name}`
-            await audio.mv(`.${audioPa}`)
+            console.log(pa, audioPa)
             // /upload_preset: 'nrwvfull', 
             const savedImage = await saveToCloudinary(`.${pa}`,{upload_preset: 'nrwvfull', folder: `pxmusic/images/${dir}`, use_filename: true})
             const savedAudio = await saveToCloudinary(`.${audioPa}`, {upload_preset: 'nrwvfull', resource_type: "video", folder: `pxmusic/music/${dir}`, use_filename: true})
