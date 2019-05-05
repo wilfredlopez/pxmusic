@@ -66,7 +66,7 @@ const NewFormN = () => {
             SET_LOADING(true)
 
             let URL = '/api/music/new'
-            URL = 'https://pxmusic.herokuapp.com/api/music/new'
+           // URL = 'https://pxmusic.herokuapp.com/api/music/new'
 
             const res = await axios.post(URL,formData, options)
             console.log(res)
